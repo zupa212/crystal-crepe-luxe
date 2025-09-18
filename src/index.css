@@ -158,6 +158,19 @@ All colors MUST be HSL.
     @apply relative text-foreground/80 hover:text-foreground transition-colors duration-300 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
   }
 
+  /* Rounded Header on Scroll - Mobile Optimized */
+  .rounded-header {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  @media (max-width: 768px) {
+    .rounded-header {
+      border-radius: 20px;
+      margin: 8px;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+    }
+  }
+
   /* Text Gradients */
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;

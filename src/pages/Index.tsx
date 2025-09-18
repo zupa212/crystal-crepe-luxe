@@ -5,9 +5,10 @@ import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Heart, Star, MapPin } from 'lucide-react';
-import heroCrepeImg from '@/assets/hero-crepe.jpg';
+import heroVideoBg from '@/assets/hero-video-bg.jpg';
 import sweetCrepeImg from '@/assets/sweet-crepe.jpg';
 import savoryCrepeImg from '@/assets/savory-crepe.jpg';
+import brunchCrepeImg from '@/assets/brunch-crepe.png';
 import restaurantImg from '@/assets/restaurant-interior.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -124,14 +125,26 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
+      {/* Hero Section with Video Support */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="hero-bg absolute inset-0 z-0">
-          <img
-            src={heroCrepeImg}
-            alt="Fresh crepes being made"
+          {/* Video placeholder - you can replace with actual video */}
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
             className="w-full h-full object-cover"
-          />
+            poster={heroVideoBg}
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+            {/* Fallback image if video fails */}
+            <img
+              src={heroVideoBg}
+              alt="Fresh crepes being made"
+              className="w-full h-full object-cover"
+            />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent"></div>
         </div>
         
@@ -157,30 +170,31 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Brunch With Us Section */}
       <section ref={aboutRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-subtle">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="about-content">
-              <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
-                Our Story
+              <h2 className="text-4xl md:text-6xl font-bold text-gradient mb-6">
+                BRUNCH WITH US
               </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Founded in the heart of the city, Crystal Crepe brings the authentic taste of French crêperies to your neighborhood. Our master chefs use time-honored techniques and premium ingredients to create crêpes that transport you straight to the streets of Paris.
+              <p className="text-lg md:text-xl text-muted-foreground mb-4 uppercase tracking-wide">
+                AT CREPEAFFAIRE
               </p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                From sweet indulgences to savory delights, each crêpe is made to order with passion and precision. We believe in the magic that happens when tradition meets innovation.
+                Join us for an unforgettable brunch experience where French tradition meets modern culinary artistry. Our carefully crafted crêpes are made fresh to order, using premium ingredients and time-honored techniques.
               </p>
-              <Link to="/blog">
-                <Button variant="outline" className="btn-outline-hero">
-                  Learn More About Us
-                </Button>
-              </Link>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                From sweet morning indulgences to savory brunch favorites, each dish is a celebration of flavor and craftsmanship. Come discover why Crystal Crepe has become the destination for discerning food lovers.
+              </p>
+              <Button size="lg" className="btn-hero text-lg px-12 py-4 rounded-full">
+                BOOK NOW
+              </Button>
             </div>
             <div className="about-image">
               <img
-                src={restaurantImg}
-                alt="Crystal Crepe restaurant interior"
+                src={brunchCrepeImg}
+                alt="Delicious crepe with blueberries and cream"
                 className="rounded-2xl shadow-elegant w-full h-auto"
               />
             </div>

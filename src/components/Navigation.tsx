@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logoImg from '@/assets/crystal-crepe-logo.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,15 +15,21 @@ const Navigation = () => {
     const nav = navRef.current;
     if (!nav) return;
 
-    // Animate navbar on scroll
+    // Animate navbar on scroll with rounded corners
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const opacity = scrolled > 50 ? 0.95 : 1;
       const backdrop = scrolled > 50 ? 'blur(10px)' : 'blur(0px)';
+      const borderRadius = scrolled > 50 ? '20px' : '0px';
+      const margin = scrolled > 50 ? '8px' : '0px';
+      const boxShadow = scrolled > 50 ? '0 10px 30px -10px rgba(0,0,0,0.3)' : 'none';
       
       gsap.to(nav, {
         backgroundColor: `rgba(255, 255, 255, ${opacity})`,
         backdropFilter: backdrop,
+        borderRadius: borderRadius,
+        margin: margin,
+        boxShadow: boxShadow,
         duration: 0.3,
         ease: 'power2.out',
       });
@@ -50,12 +57,13 @@ const Navigation = () => {
   ];
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50 transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-gradient">Crystal Crepe</span>
+          <Link to="/" className="flex items-center space-x-3">
+            <img src={logoImg} alt="Crystal Crepe" className="h-8 w-auto md:h-10" />
+            <span className="text-xl font-bold text-gradient hidden sm:block">Crystal Crepe</span>
           </Link>
 
           {/* Desktop Navigation */}
