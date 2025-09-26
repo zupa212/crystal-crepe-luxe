@@ -1,65 +1,21 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
-import sweetCrepeImg from '@/assets/sweet-crepe.jpg';
-import savoryCrepeImg from '@/assets/savory-crepe.jpg';
+import { ChevronDown } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Menu = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  const sweetSectionRef = useRef<HTMLElement>(null);
-  const savorySectionRef = useRef<HTMLElement>(null);
+  const [activeCategory, setActiveCategory] = useState('sweet');
+  const [expandedIngredients, setExpandedIngredients] = useState<number | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero animation
-      if (heroRef.current) {
-        gsap.fromTo(heroRef.current.children,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out',
-            delay: 0.5,
-          }
-        );
-      }
-
-      // Sweet crepes section parallax
-      if (sweetSectionRef.current) {
-        gsap.to(sweetSectionRef.current, {
-          y: -50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sweetSectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
-
-      // Savory crepes section parallax
-      if (savorySectionRef.current) {
-        gsap.to(savorySectionRef.current, {
-          y: 50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: savorySectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
-
       // Menu item animations
-      gsap.utils.toArray('.menu-item').forEach((item: any) => {
+      gsap.utils.toArray('.menu-item').forEach((item: any, index: number) => {
         gsap.fromTo(item,
           { opacity: 0, scale: 0.9, y: 30 },
           {
@@ -68,9 +24,10 @@ const Menu = () => {
             y: 0,
             duration: 0.6,
             ease: 'power3.out',
+            delay: index * 0.1,
             scrollTrigger: {
               trigger: item,
-              start: 'top 80%',
+              start: 'top 90%',
             },
           }
         );
@@ -78,151 +35,223 @@ const Menu = () => {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [activeCategory]);
+
+  const categories = [
+    { id: 'sweet', name: 'SWEET', color: 'text-primary' },
+    { id: 'savoury', name: 'SAVOURY', color: 'text-muted-foreground' },
+    { id: 'breakfast', name: 'BREAKFAST', color: 'text-muted-foreground' },
+    { id: 'vegan', name: 'VEGAN', color: 'text-muted-foreground' },
+    { id: 'coffee', name: 'COFFEE', color: 'text-muted-foreground' },
+    { id: 'waffles', name: 'WAFFLES', color: 'text-muted-foreground' },
+    { id: 'pancakes', name: 'MINI PANCAKES', color: 'text-muted-foreground' },
+    { id: 'drinks', name: 'DRINKS', color: 'text-muted-foreground' },
+  ];
+
+  const viralMenu = [
+    {
+      name: 'Κρέπα Dubai chocolate',
+      description: 'Με πραλίνα φυστίκι, Nutella & κανταΐφι',
+      price: 'Από 7,60€',
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'Κρέπα Dubai strawberry',
+      description: 'Με πραλίνα φυστίκι, Nutella, κανταΐφι & φράουλα',
+      price: 'Από 8,60€',
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'Κρέπα banoffee',
+      description: 'Με πραλίνα lotus, πραλίνα λευκής σοκολάτας, μπανάνα & κροκάν αμυγδάλου',
+      price: 'Από 7,20€',
+      image: '/api/placeholder/300/300'
+    },
+  ];
 
   const sweetCrepes = [
     {
-      name: 'Classic Nutella®',
-      description: 'Traditional crepe with premium Nutella® spread and powdered sugar',
-      price: '$8.50',
+      name: 'Κρέπα 3Bit',
+      description: 'Με Merenda, λευκή σοκολάτα & μπισκότο Μιράντα',
+      price: 'Από 6,00€',
+      image: '/api/placeholder/300/300'
     },
     {
-      name: 'Berry Bliss',
-      description: 'Fresh strawberries, blueberries, whipped cream, and maple syrup',
-      price: '$10.50',
+      name: 'Κρέπα Kiss',
+      description: 'Με Μerenda, Kiss, μπισκότο Oreo & φρέσκια φράουλα',
+      price: 'Από 6,50€',
+      image: '/api/placeholder/300/300'
     },
     {
-      name: 'Lemon Ricotta',
-      description: 'Creamy ricotta cheese with fresh lemon zest and honey drizzle',
-      price: '$9.75',
+      name: 'Κρέπα strawberry',
+      description: 'Με Merenda, μπισκότο Μιράντα & φρέσκια φράουλα',
+      price: 'Από 5,50€',
+      image: '/api/placeholder/300/300'
     },
     {
-      name: 'Caramel Apple',
-      description: 'Sautéed apples with salted caramel and vanilla ice cream',
-      price: '$11.25',
+      name: 'Κρέπα Walter white',
+      description: 'Με λευκή σοκολάτα, μπισκότο Oreo & φρέσκια φράουλα',
+      price: 'Από 5,70€',
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'Κρέπα Kinder Bueno & Merenda',
+      description: 'Με Merenda, πραλίνα Bueno & κομμάτια Kinder Bueno',
+      price: 'Από 6,50€',
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'Κρέπα Snickers',
+      description: 'Με Merenda, φυστίκι, πραλίνα καραμέλα & Snickers',
+      price: 'Από 7,20€',
+      image: '/api/placeholder/300/300'
     },
   ];
 
   const savoryCrepes = [
     {
-      name: 'The Italian Job',
-      description: 'Prosciutto, fresh mozzarella, arugula, and balsamic glaze',
-      price: '$12.50',
+      name: 'Κρέπα γιαννιώτικη',
+      description: 'Με gouda, μπέικον, κοτομπουκιές, πατάτες τηγανητές & ουγγαρέζα',
+      price: 'Από 8,80€',
+      image: '/api/placeholder/300/300'
     },
     {
-      name: 'Ham & Cheddar',
-      description: 'Premium ham with aged cheddar and Dijon mustard',
-      price: '$10.75',
+      name: 'Κρέπα a la creme',
+      description: 'Με gouda, μπέικον, τηγανιά κοτόπουλο, φρέσκα μανιτάρια σοταρισμένα, πατάτες τηγανητές & κρέμα γάλακτος',
+      price: 'Από 9,90€',
+      image: '/api/placeholder/300/300'
     },
     {
-      name: 'Smoked Salmon & Cream Cheese',
-      description: 'Norwegian salmon with cream cheese, capers, and dill',
-      price: '$14.25',
+      name: 'Κρέπα γύρος χοιρινός',
+      description: 'Με gouda, γύρο χοιρινό, πατάτες τηγανητές, ντομάτα, τυροσαλάτα, ketchup & μουστάρδα',
+      price: 'Από 8,70€',
+      image: '/api/placeholder/300/300'
     },
     {
-      name: 'Mushroom & Gruyère',
-      description: 'Sautéed mushrooms with Swiss Gruyère and fresh herbs',
-      price: '$11.50',
+      name: 'Κρέπα Crystal Crepe',
+      description: 'Με διπλό gouda, μπέικον, πατάτες τηγανητές, ντομάτα, τυροσαλάτα, ketchup & μουστάρδα',
+      price: 'Από 8,80€',
+      image: '/api/placeholder/300/300'
     },
   ];
+
+  const getCurrentItems = () => {
+    if (activeCategory === 'sweet') return sweetCrepes;
+    if (activeCategory === 'savoury') return savoryCrepes;
+    return viralMenu;
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
-      <section ref={heroRef} className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 parallax-bg">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-gradient mb-6">
-            Our Menu
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Discover our handcrafted crêpes made with the finest ingredients and traditional French techniques
-          </p>
+      {/* Category Navigation */}
+      <div className="pt-24 pb-4 bg-background border-b">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`text-sm md:text-base font-medium transition-colors ${
+                  activeCategory === category.id ? category.color : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Sweet Crepes Section */}
-      <section ref={sweetSectionRef} className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gradient mb-8">Sweet Crêpes</h2>
-              <div className="space-y-6">
-                {sweetCrepes.map((item, index) => (
-                  <div key={index} className="menu-item crepe-card">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-semibold text-foreground">{item.name}</h3>
-                      <span className="text-xl font-bold text-primary">{item.price}</span>
+      {/* Menu Content */}
+      <div className="flex min-h-screen">
+        {/* Sidebar */}
+        <div className="hidden md:flex w-16 lg:w-20 bg-red-600 items-center justify-center">
+          <div className="transform -rotate-90 whitespace-nowrap">
+            <h2 className="text-white font-bold text-lg lg:text-xl tracking-widest">
+              {activeCategory === 'sweet' ? 'SWEET CRÊPES' : 
+               activeCategory === 'savoury' ? 'SAVOURY CRÊPES' : 
+               'VIRAL MENU'}
+            </h2>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 py-8 px-4">
+          <div className="container mx-auto">
+            {/* Mobile Category Title */}
+            <div className="md:hidden mb-8 text-center">
+              <h2 className="text-3xl font-bold text-gradient">
+                {activeCategory === 'sweet' ? 'Sweet Crêpes' : 
+                 activeCategory === 'savoury' ? 'Savoury Crêpes' : 
+                 'Viral Menu'}
+              </h2>
+            </div>
+
+            {/* Featured Items Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" ref={menuRef}>
+              {getCurrentItems().slice(0, 6).map((item, index) => (
+                <div key={index} className="menu-item text-center">
+                  {/* Crepe Image - Cone Shape */}
+                  <div className="relative mb-4 group">
+                    <div className="w-64 h-64 mx-auto bg-gradient-to-br from-amber-100 to-amber-200 rounded-full relative overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                      <div className="absolute inset-4 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full">
+                        <div className="absolute inset-2 bg-gradient-to-br from-amber-50 to-amber-100 rounded-full flex items-center justify-center">
+                          <div className="text-6xl">🥞</div>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-muted-foreground">{item.description}</p>
-                    <Button variant="outline" className="btn-outline-hero mt-4">
-                      Order Now
-                    </Button>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="menu-item">
-              <img
-                src={sweetCrepeImg}
-                alt="Sweet Crepes"
-                className="rounded-2xl shadow-elegant w-full h-auto"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Savory Crepes Section */}
-      <section ref={savorySectionRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-subtle">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="menu-item order-2 lg:order-1">
-              <img
-                src={savoryCrepeImg}
-                alt="Savory Crepes"
-                className="rounded-2xl shadow-elegant w-full h-auto"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="text-4xl font-bold text-gradient mb-8">Savory Crêpes</h2>
-              <div className="space-y-6">
-                {savoryCrepes.map((item, index) => (
-                  <div key={index} className="menu-item crepe-card">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-semibold text-foreground">{item.name}</h3>
-                      <span className="text-xl font-bold text-primary">{item.price}</span>
+                  {/* Item Info */}
+                  <h3 className="text-lg font-bold text-foreground mb-2 uppercase tracking-wide">
+                    {item.name}
+                  </h3>
+
+                  {/* Order Button */}
+                  <Button 
+                    className="bg-black text-white hover:bg-gray-800 px-8 py-2 text-sm font-medium mb-4"
+                  >
+                    ORDER HERE
+                  </Button>
+
+                  {/* Ingredients Dropdown */}
+                  <button
+                    onClick={() => setExpandedIngredients(expandedIngredients === index ? null : index)}
+                    className="flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground transition-colors mx-auto"
+                  >
+                    <span className="text-sm">INGREDIENTS +</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform ${expandedIngredients === index ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* Expanded Ingredients */}
+                  {expandedIngredients === index && (
+                    <div className="mt-4 p-4 bg-muted/50 rounded-lg">
+                      <p className="text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
+                      <p className="text-base font-bold text-primary mt-2">
+                        {item.price}
+                      </p>
                     </div>
-                    <p className="text-muted-foreground">{item.description}</p>
-                    <Button variant="outline" className="btn-outline-hero mt-4">
-                      Order Now
-                    </Button>
-                  </div>
-                ))}
-              </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Add Fillings Section */}
+            <div className="text-center py-12 border-t">
+              <h3 className="text-2xl font-bold text-foreground mb-4 tracking-widest">ADD FILLINGS</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Maple syrup, walnuts, strawberries, banana, Nutella®, milk chocolate,
+                white chocolate, cinnamon, fresh lemon juice, butterscotch.
+                Scoop of ice cream or a portion of whipped cream...
+              </p>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-hero text-primary-foreground">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Order?</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Visit us today or place your order online for pickup
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="text-lg px-8 py-4">
-              Visit Our Location
-            </Button>
-            <Button variant="outline" size="lg" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8 py-4">
-              Order Online
-            </Button>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
