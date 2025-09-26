@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
 import logoImg from '@/assets/crystal-crepe-logo.png';
 
 const Navigation = () => {
@@ -56,6 +57,33 @@ const Navigation = () => {
     { path: '/blog', label: 'Blog' },
   ];
 
+  // Enhanced mobile menu animation variants
+  const menuVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: -20,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+
   return (
     <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50 transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,26 +123,53 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div ref={menuRef} className="md:hidden py-4 border-t border-border/50">
-            <div className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`nav-link text-lg ${location.pathname === link.path ? 'text-primary after:scale-x-100' : ''}`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Button variant="default" className="btn-hero w-full mt-4">
-                Order Now
-              </Button>
-            </div>
-          </div>
-        )}
+        {/* Enhanced Mobile Navigation with Framer Motion */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              ref={menuRef}
+              className="md:hidden py-4 border-t border-border/50 overflow-hidden"
+              variants={menuVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+            >
+              <motion.div className="flex flex-col space-y-4">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.path}
+                    variants={itemVariants}
+                    custom={index}
+                  >
+                    <Link
+                      to={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`nav-link text-lg block py-2 px-4 rounded-lg transition-all duration-300 ${
+                        location.pathname === link.path 
+                          ? 'text-primary bg-primary/10 shadow-sm' 
+                          : 'text-foreground hover:text-primary hover:bg-primary/5 hover:shadow-sm hover:scale-105'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div variants={itemVariants}>
+                  <Button 
+                    variant="default" 
+                    className="btn-hero w-full mt-4" 
+                    onClick={() => {
+                      setIsOpen(false);
+                      window.open('https://www.e-food.gr/delivery/thessaloniki/crystal-crepe-7607780', '_blank');
+                    }}
+                  >
+                    Order Now
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

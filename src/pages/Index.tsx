@@ -1,7 +1,14 @@
+// Global declarations for tracking
+declare global {
+  function gtag(...args: any[]): void;
+  function fbq(...args: any[]): void;
+}
+
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Heart, Star, MapPin } from 'lucide-react';
@@ -126,7 +133,7 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section with Video Support */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="hero-bg absolute inset-0 z-0">
           {/* Video placeholder - you can replace with actual video */}
           <video 
@@ -158,11 +165,52 @@ const Index = () => {
             </p>
             <div className="hero-buttons flex flex-col sm:flex-row gap-4">
               <Link to="/menu">
-                <Button size="lg" className="btn-hero text-lg px-8 py-4">
+                <Button 
+                  size="lg" 
+                  className="btn-hero text-lg px-8 py-4"
+                  onClick={() => {
+                    // Google Analytics tracking
+                    if (typeof gtag !== 'undefined') {
+                      gtag('event', 'click', {
+                        event_category: 'CTA',
+                        event_label: 'Explore Menu'
+                      });
+                    }
+                    // Facebook Pixel tracking
+                    if (typeof fbq !== 'undefined') {
+                      fbq('track', 'ViewContent', {
+                        content_name: 'Menu',
+                        content_category: 'Navigation'
+                      });
+                    }
+                  }}
+                >
                   Explore Menu
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="btn-outline-hero text-lg px-8 py-4">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="btn-outline-hero text-lg px-8 py-4"
+                onClick={() => {
+                  // Google Analytics tracking
+                  if (typeof gtag !== 'undefined') {
+                    gtag('event', 'click', {
+                      event_category: 'CTA',
+                      event_label: 'Order Online'
+                    });
+                  }
+                  // Facebook Pixel tracking
+                  if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                      content_name: 'Order Online',
+                      value: 0.00,
+                      currency: 'EUR'
+                    });
+                  }
+                  window.open('https://www.e-food.gr/delivery/thessaloniki/crystal-crepe-7607780', '_blank');
+                }}
+              >
                 Order Online
               </Button>
             </div>
@@ -322,6 +370,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
