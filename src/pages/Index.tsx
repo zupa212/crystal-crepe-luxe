@@ -16,83 +16,73 @@ const Index = () => {
   const eventsRef = useRef(null);
 
   useEffect(() => {
-    // Hero section parallax animation
+    // Hero section - keep video steady, no parallax
     gsap.fromTo(heroRef.current, 
-      { scale: 1.1, opacity: 0.8, y: 0 },
+      { scale: 1.1, opacity: 0.8 },
       { 
         scale: 1, 
         opacity: 1, 
-        y: -100,
         duration: 2, 
         ease: "power2.out",
         scrollTrigger: {
           trigger: heroRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: 2
+          scrub: 1
         }
       }
     );
 
-    // Video parallax effect
-    gsap.to(heroRef.current?.querySelector('video'), {
-      y: -200,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1
-      }
-    });
-
-    // Brunch section animation
+    // Brunch section - overflow effect
     gsap.fromTo(brunchRef.current,
-      { x: -100, opacity: 0 },
+      { x: -200, opacity: 0, scale: 0.8 },
       {
         x: 0,
         opacity: 1,
+        scale: 1,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
           trigger: brunchRef.current,
           start: "top 80%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse"
+          scrub: 1
         }
       }
     );
 
-    // Parties section animation
+    // Parties section - overflow effect
     gsap.fromTo(partiesRef.current,
-      { y: 100, opacity: 0 },
+      { y: 200, opacity: 0, scale: 0.9 },
       {
         y: 0,
         opacity: 1,
+        scale: 1,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
           trigger: partiesRef.current,
           start: "top 80%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse"
+          scrub: 1
         }
       }
     );
 
-    // Events section animation
+    // Events section - overflow effect
     gsap.fromTo(eventsRef.current,
-      { scale: 0.8, opacity: 0 },
+      { scale: 0.7, opacity: 0, y: 150 },
       {
         scale: 1,
         opacity: 1,
+        y: 0,
         duration: 1.5,
         ease: "back.out(1.7)",
         scrollTrigger: {
           trigger: eventsRef.current,
           start: "top 80%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse"
+          scrub: 1
         }
       }
     );
