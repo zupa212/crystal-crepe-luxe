@@ -147,9 +147,17 @@ const Index = () => {
         
         {/* Right side - BRUNCH WITH US text and button */}
         <div className="w-1/2 bg-gray-200 flex flex-col items-center justify-center p-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-800 mb-8 text-center" style={{ fontFamily: 'Impact, Arial Black, sans-serif', letterSpacing: '0.1em' }}>
             BRUNCH WITH US
           </h2>
+          <div className="flex items-center gap-4 mb-6">
+            <img 
+              src="/efood.png" 
+              alt="e-food" 
+              className="w-12 h-12 object-contain"
+            />
+            <span className="text-lg font-semibold text-gray-700">Order Online</span>
+          </div>
           <Button 
             size="lg" 
             className="floating-btn bg-white text-gray-800 border-2 border-gray-300 hover:bg-gray-50 text-lg px-8 py-3 rounded-full"
