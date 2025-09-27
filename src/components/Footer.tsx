@@ -130,33 +130,37 @@ const Footer = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full bg-white hover:bg-gray-50 text-gray-800 border-white"
+                className="w-full bg-white hover:bg-gray-50 text-gray-800 border-white hover:scale-105 transition-transform duration-300"
                 onClick={() => {
                   handleOrderClick('E-Food');
                   window.open('https://www.e-food.gr/delivery/thessaloniki/crystal-crepe-7607780', '_blank');
                 }}
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-orange-500 rounded-sm flex items-center justify-center">
-                    <span className="text-white font-bold text-xs">E</span>
-                  </div>
-                  E-Food
+                <div className="flex items-center gap-3">
+                  <img 
+                    src="/efood.png" 
+                    alt="e-food" 
+                    className="w-6 h-6 object-contain"
+                  />
+                  e-food
                 </div>
               </Button>
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full bg-white hover:bg-gray-50 text-gray-800 border-white"
+                className="w-full bg-white hover:bg-gray-50 text-gray-800 border-white hover:scale-105 transition-transform duration-300"
                 onClick={() => {
-                  handleOrderClick('Deliveroo');
-                  window.open('https://deliveroo.co.uk/', '_blank');
+                  handleOrderClick('Wolt');
+                  window.open('https://wolt.com/', '_blank');
                 }}
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-teal-500 rounded-sm flex items-center justify-center">
-                    <span className="text-white font-bold text-xs">d</span>
-                  </div>
-                  Deliveroo
+                <div className="flex items-center gap-3">
+                  <img 
+                    src="/Screenshot 2025-09-27 220731.png" 
+                    alt="Wolt" 
+                    className="w-6 h-6 object-contain"
+                  />
+                  Wolt
                 </div>
               </Button>
             </div>

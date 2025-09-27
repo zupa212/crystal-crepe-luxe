@@ -1,17 +1,106 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import heroVideoBg from '@/assets/hero-video-bg.jpg';
 import brunchCrepeImg from '@/assets/brunch-crepe.png';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
+  const heroRef = useRef(null);
+  const brunchRef = useRef(null);
+  const partiesRef = useRef(null);
+  const eventsRef = useRef(null);
+
+  useEffect(() => {
+    // Hero section animation
+    gsap.fromTo(heroRef.current, 
+      { scale: 1.1, opacity: 0.8 },
+      { 
+        scale: 1, 
+        opacity: 1, 
+        duration: 2, 
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      }
+    );
+
+    // Brunch section animation
+    gsap.fromTo(brunchRef.current,
+      { x: -100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: brunchRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Parties section animation
+    gsap.fromTo(partiesRef.current,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: partiesRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Events section animation
+    gsap.fromTo(eventsRef.current,
+      { scale: 0.8, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 1.5,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: eventsRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Floating animation for buttons
+    gsap.to(".floating-btn", {
+      y: -10,
+      duration: 2,
+      ease: "power2.inOut",
+      yoyo: true,
+      repeat: -1
+    });
+
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Crepe Cooking Section - Top 60% */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           {/* Video 1 */}
           <video 
@@ -34,7 +123,7 @@ const Index = () => {
       </section>
 
       {/* BRUNCH WITH US Section - Bottom 40% */}
-      <section className="h-[40vh] flex">
+      <section ref={brunchRef} className="h-[40vh] flex">
         {/* Left side - Video 2 */}
         <div className="w-1/2 bg-gray-100 flex items-center justify-center p-8">
           <div className="relative w-full h-full">
@@ -63,7 +152,7 @@ const Index = () => {
           </h2>
           <Button 
             size="lg" 
-            className="bg-white text-gray-800 border-2 border-gray-300 hover:bg-gray-50 text-lg px-8 py-3 rounded-full"
+            className="floating-btn bg-white text-gray-800 border-2 border-gray-300 hover:bg-gray-50 text-lg px-8 py-3 rounded-full"
           >
             BOOK NOW
           </Button>
@@ -71,7 +160,7 @@ const Index = () => {
       </section>
 
       {/* PARTIES AT CRÊPEAFFAIRE Section */}
-      <section className="h-[50vh] relative overflow-hidden">
+      <section ref={partiesRef} className="h-[50vh] relative overflow-hidden">
         <div className="absolute inset-0 bg-black">
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
           <div className="absolute top-1/2 right-1/4 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full opacity-20 animate-pulse"></div>
@@ -85,7 +174,7 @@ const Index = () => {
           </h2>
           <Button 
             size="lg" 
-            className="bg-black text-white border-2 border-white hover:bg-white hover:text-black text-lg px-8 py-3 rounded-full transition-all duration-300"
+            className="floating-btn bg-black text-white border-2 border-white hover:bg-white hover:text-black text-lg px-8 py-3 rounded-full transition-all duration-300"
           >
             BOOK NOW
           </Button>
@@ -93,7 +182,7 @@ const Index = () => {
       </section>
 
       {/* Special Events Section with Parallax */}
-      <section className="h-[60vh] relative overflow-hidden">
+      <section ref={eventsRef} className="h-[60vh] relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-100 to-red-100">
           <div className="absolute inset-0 bg-gradient-to-r from-amber-200/30 via-orange-200/20 to-red-200/30"></div>
           {/* Parallax background elements */}
@@ -112,7 +201,7 @@ const Index = () => {
           </p>
           <Button 
             size="lg" 
-            className="bg-amber-600 text-white hover:bg-amber-700 text-lg px-12 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300"
+            className="floating-btn bg-amber-600 text-white hover:bg-amber-700 text-lg px-12 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300"
           >
             LEARN MORE
           </Button>
