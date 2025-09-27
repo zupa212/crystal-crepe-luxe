@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import heroVideoBg from '@/assets/hero-video-bg.jpg';
 import brunchCrepeImg from '@/assets/brunch-crepe.png';
@@ -20,7 +21,7 @@ const Index = () => {
             playsInline 
             className="w-full h-full object-cover"
           >
-            <source src="/video1.mp4" type="video/mp4" />
+            <source src="/Video-657.mp4" type="video/mp4" />
             {/* Fallback image if video fails */}
             <img
               src={heroVideoBg}
@@ -44,7 +45,7 @@ const Index = () => {
               playsInline 
               className="w-full h-full object-cover rounded-lg shadow-lg"
             >
-              <source src="/video2.mp4" type="video/mp4" />
+              <source src="/Video-956.mp4" type="video/mp4" />
               {/* Fallback image if video fails */}
               <img
                 src={brunchCrepeImg}
@@ -68,6 +69,8 @@ const Index = () => {
           </Button>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

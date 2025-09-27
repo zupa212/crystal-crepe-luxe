@@ -7,6 +7,8 @@ declare global {
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Clock, Mail, Facebook, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const handleOrderClick = (platform: string) => {
@@ -28,129 +30,167 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-muted/30 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto">
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 uppercase tracking-wider">
-            Order Now
-          </h2>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
-            {/* Deliveroo */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-white hover:bg-gray-50 border-2 px-8 py-6 h-auto"
-                onClick={() => {
-                  handleOrderClick('Deliveroo');
-                  window.open('https://deliveroo.co.uk/', '_blank');
-                }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-teal-500 rounded-sm flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">d</span>
-                  </div>
-                  <span className="text-gray-600 font-medium">Deliveroo</span>
-                </div>
-              </Button>
-            </motion.div>
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Restaurant Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-2xl font-bold text-primary mb-6">Crystal Crepe</h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Authentic French crêpes crafted with love and tradition. Experience the finest ingredients and time-honored techniques in every bite.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
+                <Facebook className="w-6 h-6" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
+                <Instagram className="w-6 h-6" />
+              </a>
+            </div>
+          </motion.div>
 
-            {/* Uber Eats */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-white hover:bg-gray-50 border-2 px-8 py-6 h-auto"
-                onClick={() => {
-                  handleOrderClick('Uber Eats');
-                  window.open('https://www.ubereats.com/', '_blank');
-                }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-black rounded-sm flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">U</span>
-                  </div>
-                  <span className="text-gray-600 font-medium">Uber Eats</span>
-                </div>
-              </Button>
-            </motion.div>
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h4 className="text-xl font-semibold mb-6">Quick Links</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/" className="text-gray-300 hover:text-primary transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/menu" className="text-gray-300 hover:text-primary transition-colors">
+                  Menu
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-gray-300 hover:text-primary transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <a href="#about" className="text-gray-300 hover:text-primary transition-colors">
+                  About Us
+                </a>
+              </li>
+            </ul>
+          </motion.div>
 
-            {/* E-Food */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h4 className="text-xl font-semibold mb-6">Contact Info</h4>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <p className="text-gray-300">Διεύθυνση:</p>
+                  <p className="text-gray-300">Καλαποθάκη 20</p>
+                  <p className="text-gray-300">Θεσσαλονίκη 546 24</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-primary" />
+                <a href="tel:+302310238078" className="text-gray-300 hover:text-primary transition-colors">
+                  231 023 8078
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-primary" />
+                <a href="mailto:info@crystalcrepe.gr" className="text-gray-300 hover:text-primary transition-colors">
+                  info@crystalcrepe.gr
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Order Online */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <h4 className="text-xl font-semibold mb-6">Order Online</h4>
+            <div className="space-y-3">
               <Button
                 variant="outline"
-                size="lg"
-                className="bg-white hover:bg-gray-50 border-2 px-8 py-6 h-auto"
+                size="sm"
+                className="w-full bg-white hover:bg-gray-50 text-gray-800 border-white"
                 onClick={() => {
                   handleOrderClick('E-Food');
                   window.open('https://www.e-food.gr/delivery/thessaloniki/crystal-crepe-7607780', '_blank');
                 }}
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-orange-500 rounded-sm flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">E</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-orange-500 rounded-sm flex items-center justify-center">
+                    <span className="text-white font-bold text-xs">E</span>
                   </div>
-                  <span className="text-gray-600 font-medium">E-Food</span>
+                  E-Food
                 </div>
               </Button>
-            </motion.div>
-
-            {/* Office Delivery */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
               <Button
                 variant="outline"
-                size="lg"
-                className="bg-white hover:bg-gray-50 border-2 px-8 py-6 h-auto"
+                size="sm"
+                className="w-full bg-white hover:bg-gray-50 text-gray-800 border-white"
                 onClick={() => {
-                  handleOrderClick('Office Delivery');
-                  window.open('https://www.e-food.gr/delivery/thessaloniki/crystal-crepe-7607780', '_blank');
+                  handleOrderClick('Deliveroo');
+                  window.open('https://deliveroo.co.uk/', '_blank');
                 }}
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-blue-600 rounded-sm flex items-center justify-center">
-                    <span className="text-white font-bold text-xs">📋</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-teal-500 rounded-sm flex items-center justify-center">
+                    <span className="text-white font-bold text-xs">d</span>
                   </div>
-                  <div className="text-left">
-                    <div className="text-gray-600 font-medium text-sm">Office</div>
-                    <div className="text-gray-500 text-xs">Delivery</div>
-                  </div>
+                  Deliveroo
                 </div>
               </Button>
-            </motion.div>
-          </div>
-
-          <motion.div 
-            className="text-center text-muted-foreground text-sm"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <p>© 2025 Crystal Crepe. All rights reserved.</p>
+            </div>
           </motion.div>
+        </div>
+
+        {/* Hours */}
+        <motion.div
+          className="border-t border-gray-700 pt-8 mb-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <Clock className="w-5 h-5 text-primary" />
+            <h4 className="text-lg font-semibold">Opening Hours</h4>
+          </div>
+          <div className="text-center text-gray-300">
+            <p>Monday - Sunday: 9:00 AM - 11:00 PM</p>
+            <p className="text-sm text-gray-400 mt-1">Kitchen closes at 10:30 PM</p>
+          </div>
+        </motion.div>
+
+        {/* Copyright */}
+        <motion.div
+          className="text-center text-gray-400 text-sm border-t border-gray-700 pt-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <p>© 2025 Crystal Crepe. All rights reserved.</p>
+          <p className="mt-2">Made with ❤️ in Thessaloniki</p>
         </motion.div>
       </div>
     </footer>
