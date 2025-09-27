@@ -70,6 +70,55 @@ const Index = () => {
         </div>
       </section>
 
+      {/* PARTIES AT CRÊPEAFFAIRE Section */}
+      <section className="h-[50vh] relative overflow-hidden">
+        <div className="absolute inset-0 bg-black">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+          <div className="absolute top-1/2 right-1/4 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/3 transform -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full opacity-30 animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/3 right-1/5 transform -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-gray-500 to-gray-700 rounded-full opacity-25 animate-pulse delay-2000"></div>
+        </div>
+        
+        <div className="relative z-10 h-full flex flex-col items-start justify-center p-8 md:p-16">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 uppercase tracking-wider">
+            PARTIES AT CRÊPEAFFAIRE
+          </h2>
+          <Button 
+            size="lg" 
+            className="bg-black text-white border-2 border-white hover:bg-white hover:text-black text-lg px-8 py-3 rounded-full transition-all duration-300"
+          >
+            BOOK NOW
+          </Button>
+        </div>
+      </section>
+
+      {/* Special Events Section with Parallax */}
+      <section className="h-[60vh] relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-100 to-red-100">
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-200/30 via-orange-200/20 to-red-200/30"></div>
+          {/* Parallax background elements */}
+          <div className="absolute top-10 left-10 w-20 h-20 bg-amber-300/20 rounded-full animate-bounce"></div>
+          <div className="absolute top-32 right-20 w-16 h-16 bg-orange-300/20 rounded-full animate-bounce delay-1000"></div>
+          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-red-300/20 rounded-full animate-bounce delay-2000"></div>
+          <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-yellow-300/20 rounded-full animate-bounce delay-3000"></div>
+        </div>
+        
+        <div className="relative z-10 h-full flex flex-col items-center justify-center p-8 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold text-amber-800 mb-6 uppercase tracking-wider">
+            SPECIAL EVENTS
+          </h2>
+          <p className="text-xl md:text-2xl text-amber-700 mb-8 max-w-2xl">
+            Celebrate your special moments with our exquisite crepes and unforgettable experiences
+          </p>
+          <Button 
+            size="lg" 
+            className="bg-amber-600 text-white hover:bg-amber-700 text-lg px-12 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300"
+          >
+            LEARN MORE
+          </Button>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
