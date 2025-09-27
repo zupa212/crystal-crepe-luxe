@@ -132,70 +132,50 @@ const Index = () => {
         </div>
       </section>
 
-      {/* BRUNCH WITH US Section - Bottom 40% */}
-      <section ref={brunchRef} className="h-[40vh] flex">
-        {/* Left side - Video 2 */}
-        <div className="w-1/2 bg-gray-100 flex items-center justify-center p-8">
-          <div className="relative w-full h-full">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
-              className="w-full h-full object-cover rounded-lg shadow-lg"
-            >
-              <source src="/Video-956.mp4" type="video/mp4" />
-              {/* Fallback image if video fails */}
-              <img
-                src={brunchCrepeImg}
-                alt="Delicious crepe with blueberries and cream"
-                className="w-full h-full object-cover rounded-lg shadow-lg"
-              />
-            </video>
-          </div>
-        </div>
-        
-        {/* Right side - BRUNCH WITH US text and button */}
-        <div className="w-1/2 bg-gray-200 flex flex-col items-center justify-center p-8">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-800 mb-8 text-center" style={{ fontFamily: 'Impact, Arial Black, sans-serif', letterSpacing: '0.1em' }}>
-            BRUNCH WITH US
+      {/* Order Online Section - Bottom 40% */}
+      <section ref={brunchRef} className="h-[40vh] flex items-center justify-center bg-gray-100">
+        <div className="flex flex-col items-center gap-8">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-800 text-center" style={{ fontFamily: 'Impact, Arial Black, sans-serif', letterSpacing: '0.1em' }}>
+            ORDER ONLINE
           </h2>
-          <div className="flex items-center gap-4 mb-6">
-            <img 
-              src="/efood.png" 
-              alt="e-food" 
-              className="w-12 h-12 object-contain"
-            />
-            <span className="text-lg font-semibold text-gray-700">Order Online</span>
+          <div className="flex gap-6">
+            <Button 
+              size="lg" 
+              className="floating-btn bg-white text-gray-800 border-2 border-gray-300 hover:bg-gray-50 text-lg px-8 py-3 rounded-full flex items-center gap-3"
+              onClick={() => window.open('https://www.e-food.gr/delivery/thessaloniki/crystal-crepe-7607780', '_blank')}
+            >
+              <img 
+                src="/efood.png" 
+                alt="e-food" 
+                className="w-8 h-8 object-contain"
+              />
+              e-food
+            </Button>
+            <Button 
+              size="lg" 
+              className="floating-btn bg-white text-gray-800 border-2 border-gray-300 hover:bg-gray-50 text-lg px-8 py-3 rounded-full flex items-center gap-3"
+              onClick={() => window.open('https://wolt.com/', '_blank')}
+            >
+              <img 
+                src="/Screenshot 2025-09-27 220731.png" 
+                alt="Wolt" 
+                className="w-8 h-8 object-contain"
+              />
+              Wolt
+            </Button>
           </div>
-          <Button 
-            size="lg" 
-            className="floating-btn bg-white text-gray-800 border-2 border-gray-300 hover:bg-gray-50 text-lg px-8 py-3 rounded-full"
-          >
-            BOOK NOW
-          </Button>
         </div>
       </section>
 
-      {/* PARTIES AT CRÊPEAFFAIRE Section */}
+      {/* Brunch Image Section */}
       <section ref={partiesRef} className="h-[50vh] relative overflow-hidden">
-        <div className="absolute inset-0 bg-black">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
-          <div className="absolute top-1/2 right-1/4 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute top-1/3 right-1/3 transform -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full opacity-30 animate-pulse delay-1000"></div>
-          <div className="absolute bottom-1/3 right-1/5 transform -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-gray-500 to-gray-700 rounded-full opacity-25 animate-pulse delay-2000"></div>
-        </div>
-        
-        <div className="relative z-10 h-full flex flex-col items-start justify-center p-8 md:p-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 uppercase tracking-wider">
-            PARTIES AT CRÊPEAFFAIRE
-          </h2>
-          <Button 
-            size="lg" 
-            className="floating-btn bg-black text-white border-2 border-white hover:bg-white hover:text-black text-lg px-8 py-3 rounded-full transition-all duration-300"
-          >
-            BOOK NOW
-          </Button>
+        <div className="absolute inset-0">
+          <img
+            src="/Screenshot 2025-09-27 234127.png"
+            alt="Beautiful brunch spread with crepes and blueberries"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/10"></div>
         </div>
       </section>
 
