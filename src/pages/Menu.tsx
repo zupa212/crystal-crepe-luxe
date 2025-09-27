@@ -141,19 +141,19 @@ const Menu = () => {
       name: 'Κρέπα 3Bit',
       description: 'Με Merenda, λευκή σοκολάτα & μπισκότο Μιράντα',
       price: 'Από 6,00€',
-      image: '/api/placeholder/300/300'
+      image: '/biscof.png'
     },
     {
       name: 'Κρέπα Kiss',
       description: 'Με Μerenda, Kiss, μπισκότο Oreo & φρέσκια φράουλα',
       price: 'Από 6,50€',
-      image: '/api/placeholder/300/300'
+      image: '/clasic nutela.png'
     },
     {
       name: 'Κρέπα strawberry',
       description: 'Με Merenda, μπισκότο Μιράντα & φρέσκια φράουλα',
       price: 'Από 5,50€',
-      image: '/api/placeholder/300/300'
+      image: '/lotus biscof.png'
     },
     {
       name: 'Κρέπα Walter white',
@@ -401,14 +401,14 @@ const Menu = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" ref={menuRef}>
               {getCurrentItems().slice(0, 6).map((item, index) => (
                 <div key={index} className="menu-item text-center">
-                  {/* Crepe Image - Cone Shape */}
+                  {/* Crepe Image */}
                   <div className="relative mb-4 group">
-                    <div className="w-64 h-64 mx-auto bg-gradient-to-br from-amber-100 to-amber-200 rounded-full relative overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
-                      <div className="absolute inset-4 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full">
-                        <div className="absolute inset-2 bg-gradient-to-br from-amber-50 to-amber-100 rounded-full flex items-center justify-center">
-                          <div className="text-6xl">🥞</div>
-                        </div>
-                      </div>
+                    <div className="w-64 h-64 mx-auto rounded-2xl relative overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover rounded-2xl"
+                      />
                     </div>
                   </div>
 
