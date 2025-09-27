@@ -401,13 +401,13 @@ const Menu = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" ref={menuRef}>
               {getCurrentItems().slice(0, 6).map((item, index) => (
                 <div key={index} className="menu-item text-center">
-                  {/* Crepe Image */}
+                  {/* Crepe Image - Invisible/Transparent */}
                   <div className="relative mb-4 group">
-                    <div className="w-64 h-64 mx-auto rounded-2xl relative overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-80 h-80 md:w-64 md:h-64 mx-auto rounded-2xl relative overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover rounded-2xl"
+                        className="w-full h-full object-cover rounded-2xl opacity-0"
                       />
                     </div>
                   </div>
