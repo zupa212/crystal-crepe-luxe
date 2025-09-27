@@ -16,22 +16,35 @@ const Index = () => {
   const eventsRef = useRef(null);
 
   useEffect(() => {
-    // Hero section animation
+    // Hero section parallax animation
     gsap.fromTo(heroRef.current, 
-      { scale: 1.1, opacity: 0.8 },
+      { scale: 1.1, opacity: 0.8, y: 0 },
       { 
         scale: 1, 
         opacity: 1, 
+        y: -100,
         duration: 2, 
         ease: "power2.out",
         scrollTrigger: {
           trigger: heroRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: 1
+          scrub: 2
         }
       }
     );
+
+    // Video parallax effect
+    gsap.to(heroRef.current?.querySelector('video'), {
+      y: -200,
+      ease: "none",
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+      }
+    });
 
     // Brunch section animation
     gsap.fromTo(brunchRef.current,
@@ -119,6 +132,13 @@ const Index = () => {
             />
           </video>
           <div className="absolute inset-0 bg-black/20"></div>
+        </div>
+        
+        {/* Scroll Down Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce"></div>
+          </div>
         </div>
       </section>
 
