@@ -31,8 +31,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 md:mb-12 text-center md:text-left">
           {/* Restaurant Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -41,14 +41,14 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-bold text-primary mb-6">Crystal Crepe</h3>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <p className="text-gray-300 mb-6 leading-relaxed max-w-md mx-auto md:mx-0">
               Authentic French crêpes crafted with love and tradition. Experience the finest ingredients and time-honored techniques in every bite.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
+            <div className="flex space-x-4 justify-center md:justify-start">
+              <a href="#" className="text-gray-400 hover:text-primary transition-colors transform hover:scale-110">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
+              <a href="#" className="text-gray-400 hover:text-primary transition-colors transform hover:scale-110">
                 <Instagram className="w-6 h-6" />
               </a>
             </div>
@@ -64,22 +64,22 @@ const Footer = () => {
             <h4 className="text-xl font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-primary transition-colors block py-1 hover:translate-x-1 transform transition-transform">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/menu" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/menu" className="text-gray-300 hover:text-primary transition-colors block py-1 hover:translate-x-1 transform transition-transform">
                   Menu
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/blog" className="text-gray-300 hover:text-primary transition-colors block py-1 hover:translate-x-1 transform transition-transform">
                   Blog
                 </Link>
               </li>
               <li>
-                <a href="#about" className="text-gray-300 hover:text-primary transition-colors">
+                <a href="#about" className="text-gray-300 hover:text-primary transition-colors block py-1 hover:translate-x-1 transform transition-transform">
                   About Us
                 </a>
               </li>

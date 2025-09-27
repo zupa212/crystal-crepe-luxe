@@ -88,10 +88,18 @@ const Navigation = () => {
     <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50 transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          {/* Mobile Logo - Centered */}
+          <div className="md:hidden flex-1 flex justify-center">
+            <Link to="/" className="flex items-center space-x-3">
+              <img src={logoImg} alt="Crystal Crepe" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-gradient">Crystal Crepe</span>
+            </Link>
+          </div>
+
+          {/* Desktop Logo */}
+          <Link to="/" className="hidden md:flex items-center space-x-3">
             <img src={logoImg} alt="Crystal Crepe" className="h-8 w-auto md:h-10" />
-            <span className="text-xl font-bold text-gradient hidden sm:block">Crystal Crepe</span>
+            <span className="text-xl font-bold text-gradient">Crystal Crepe</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -111,7 +119,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden absolute right-4">
             <Button
               variant="ghost"
               size="sm"

@@ -33,59 +33,7 @@ const Index = () => {
       }
     );
 
-    // Brunch section - overflow effect
-    gsap.fromTo(brunchRef.current,
-      { x: -200, opacity: 0, scale: 0.8 },
-      {
-        x: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: brunchRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: 1
-        }
-      }
-    );
-
-    // Parties section - overflow effect
-    gsap.fromTo(partiesRef.current,
-      { y: 200, opacity: 0, scale: 0.9 },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: partiesRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: 1
-        }
-      }
-    );
-
-    // Events section - overflow effect
-    gsap.fromTo(eventsRef.current,
-      { scale: 0.7, opacity: 0, y: 150 },
-      {
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        duration: 1.5,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: eventsRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: 1
-        }
-      }
-    );
+    // No GSAP animations for other sections - keep them static
 
     // Floating animation for buttons
     gsap.to(".floating-btn", {
